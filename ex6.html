@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html>
-<body>
-
+  <body>
     <h1>Shopping List</h1>
 
     <select id="select_item">
-        <option value="Notebook">Notebook</option>
-        <option value="Jello">Jello</option>
-        <option value="Spinach">Spinach</option>
-        <option value="Rice">Rice</option>
-        <option value="Birthday Cake">Birthday Cake</option>
-        <option value="Candles">Candles</option>
+      <option value="Notebook">Notebook</option>
+      <option value="Jello">Jello</option>
+      <option value="Spinach">Spinach</option>
+      <option value="Rice">Rice</option>
+      <option value="Birthday Cake">Birthday Cake</option>
+      <option value="Candles">Candles</option>
     </select>
 
     <p>Shopping Cart:</p>
     <ul id="shopList"></ul>
 
     <script>
-        
-        // add code here
-    
+      // add code here
+      var selected_item = document.getElementById("select_item");
+      var ul = document.getElementById("shopList");
+
+      selected_item.addEventListener("change", addtocart);
+
+      function addtocart() {
+        var item_value = selected_item.value;
+        //console.log(item_value);
+
+        var items = ul.getElementsByTagName("li");
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].textContent == item_value) {
+            return;
+          }
+        }
+
+        var li = document.createElement("li");
+        var textNode = document.createTextNode(item_value);
+
+        li.appendChild(textNode);
+        ul.appendChild(li);
+      }
     </script>
-
-    
-
-    </body>
+  </body>
 </html>
